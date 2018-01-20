@@ -1,0 +1,4 @@
+Before this we were working only in one direction i.e. server responds when user does something i.e. it was only listening But now we willl do real time uusing socket i.e. server will also itself talk to client
+We are using inbuilt module path for getting straight paths => when giving paths to express middleware, we want to give path of public but unlike earlier, we have to go back using .. and then enter from server.js
+OR we can manually give path BUT since every computer is different, that path won't work => Above way of doing is shown in console.log
+We can path lib for this => you give path like method 1 but it will simplify it according to one's computer => see logs for this as well
