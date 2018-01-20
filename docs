@@ -45,3 +45,7 @@ Now we will how to create custom event i.e. register them, send/emit the custom 
 first register a event in frontend newEmail => server will receive some new email and this event should be able to listened by frontend => create just like before, no change will be there in signature due to custom event=> Now based on some condition like receving new email, server can emit this event => on server side, emit this (without any condition for now)
 => on server side, send a event using emit function..we have optional 2nd arg in which we may/may not send a data => you may send data like 2, true or send a object which is preffered
 the data you sent will be come as 1st arg in the registered event => client side in this case
+
+Remember that on serve side, everythign happends inside onConnect while on frontend side, the emition happens inside onConnect and registrations happends outside onConnect
+Note that in browser console, we can access the variables of our frontend js file directly => like socket
+=> this makes debugging lot easier 

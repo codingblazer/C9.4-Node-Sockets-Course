@@ -2,6 +2,12 @@ var socket = io();
 
 socket.on('connect',function(){
   console.log('connection event called');
+
+  socket.emit('createEmail',{
+    to: 'jen@gmail.com',
+    text: 'Hi i am text'
+  });
+
 });
 
 socket.on('disconnect',function(){

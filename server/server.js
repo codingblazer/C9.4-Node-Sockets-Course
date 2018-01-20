@@ -22,6 +22,10 @@ io.on('connection',(socket)=>{
     createdAt: 123
   });
 
+  socket.on('createEmail',(newEmail)=>{
+    console.log('New email from client to server', newEmail);
+  });
+
   socket.on('disconnect',()=>{
     console.log('disconnect event');
   });
