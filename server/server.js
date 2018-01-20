@@ -16,14 +16,13 @@ io.on('connection',(socket)=>{
   console.log('The connection event has occured');
 
   // socket.emit('newEmail'); will work without 2nd arg
-  socket.emit('newEmail',{
-    from: 'sasasacin',
-    text: 'this is the text',
-    createdAt: 123
+  socket.emit('newMessage',{
+    from: 'sachin',
+    text: 'this is the text'
   });
 
-  socket.on('createEmail',(newEmail)=>{
-    console.log('New email from client to server', newEmail);
+  socket.on('createMessage',(message)=>{
+    console.log('New email from client to server', message);
   });
 
   socket.on('disconnect',()=>{
