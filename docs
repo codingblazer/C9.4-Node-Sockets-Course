@@ -7,3 +7,34 @@ Next we ahve set up small express server which will pick files from the public d
 Also added .gitignore file will node modules in it in the root of the project
 
 we will set port config, then add start scripts in package.json for heroku to run our server and engine to tell heroku the version of node to run
+We will add socketio lib and will use it on both front end and backend
+Now to use socketio with express => express actuallu used http in its implementation=> to use socket, we must use http way instead of express
+=> when we call app.listen(), it actually calls http.createServer(app).listen() func and then we listen to it => see how we have made changes and it will work same
+=> we have done this because we neeed to provide the object returned by calling http.createServer(app) = server => earlier since this was called at back of express, we don't had this object and we didn't needed it..but we need it Now
+
+=> change app.listen to server.listen since this is equivalent
+=> var io = socketIO this is why we needed the server object
+
+go to localhost:3000/socket.io/socket.io.js => it gives us javascript file which is lib containing code needed by client to make connection to server side and vice versa => if you remove var io = socketIO line => you can't access it => this line has allowed accces of this lib
+=> now lets load this lib in your code of client side by src relative
+=> now lets write some javascript code in frontend (right now writing it inside script tag) => io() func is available in the loaded lib which requests the server to open up a web socket for connection and keep it open
+=> this method return the socket object which will be used for listening and sending to the server
+=>Go to chrome dev tools and open network tab and refresh to see all the requests made by us
+the request made by server/client are made in form of events and these events are lsitened by server/client
+=> Now to listen to any event on server side, we use io.on('event name', callback) => whenever this event occurs, this registered callback will be called and we will be getting socket in arg
+=> this socket obj is similar to socket that we got in front end by calling io()
+=> Now you will see that if nodemon was active, the message 'the connection event has occured is already present' => But why even when we haven't made connection yet, we have registed events
+=> This is because when we saved file, server using nodemon restarted and front end made connection event
+
+VIMP - when the frontend and server are connected, both will remaine connected and open for each other whatever may happen
+This connection end when ANY ONE of them leaves i.e. communication remains as long as both want to i.e. persistence => if on front end, the request in web browser is closed/ route we were requesting is closed by closing the tab  AND on server side, it can be server shutting down like happened in case of nodemon i.e.
+the nodemon restarted the server by first closing it
+
+IMP point 2 => when one of them leaves, the other keeps trying to reconnect though can't force it in anyway => check by closing the server and see network tab in dev tools => browser will keep trying to reconnect to server url, though page is already in loaded form/
+Now inside the frontend, we will register the same connection event but here the name of the event is connect instead and we wont get socket object inside callback since we already have it
+
+Similar is the disconnect event
+For front end, to see the log, open console in web browser => the console of web browser ,like the console for node is our machine console = web browser console
+
+Inside the server, we can register disconnect but we wont use .on for disconnect => we will use same signature we used in frontend inside the callback of connect because once the connection was made, we were inside this callback of connect
+=> to register disconnect, it has to be done inside

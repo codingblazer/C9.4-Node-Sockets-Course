@@ -1,5 +1,21 @@
+<!DOCTYPE html>
 <html>
+<head><meta charset="utf-8"></head>
 <body>
-  The server is up
+  <p>The server is up</p>
+
+  <script src="/socket.io/socket.io.js"></script>
+
+  <script>
+  var socket = io();
+  socket.on('connect',()=>{
+    console.log('connection event called');
+  });
+
+  socket.on('disconnect',()=>{
+    console.log('disconnect event');
+  });
+  </script>
+
 </body>
 </html>
