@@ -5,3 +5,5 @@ We can path lib for this => you give path like method 1 but it will simplify it 
 
 Next we ahve set up small express server which will pick files from the public directoty
 Also added .gitignore file will node modules in it in the root of the project
+
+we will set port config, then add start scripts in package.json for heroku to run our server and engine to tell heroku the version of node to run
