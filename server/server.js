@@ -14,9 +14,18 @@ app.use(express.static(publicPath));
 
 io.on('connection',(socket)=>{
   console.log('The connection event has occured');
+
+  // socket.emit('newEmail'); will work without 2nd arg
+  socket.emit('newEmail',{
+    from: 'sasasacin',
+    text: 'this is the text',
+    createdAt: 123
+  });
+
   socket.on('disconnect',()=>{
     console.log('disconnect event');
   });
+
 });
 
 

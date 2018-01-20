@@ -38,3 +38,10 @@ For front end, to see the log, open console in web browser => the console of web
 
 Inside the server, we can register disconnect but we wont use .on for disconnect => we will use same signature we used in frontend inside the callback of connect because once the connection was made, we were inside this callback of connect
 => to register disconnect, it has to be done inside
+
+Moved code of js in separate file
+Dont use arrow funcitons on frontedn as they are not supported in some browser
+Now we will how to create custom event i.e. register them, send/emit the custom events
+first register a event in frontend newEmail => server will receive some new email and this event should be able to listened by frontend => create just like before, no change will be there in signature due to custom event=> Now based on some condition like receving new email, server can emit this event => on server side, emit this (without any condition for now)
+=> on server side, send a event using emit function..we have optional 2nd arg in which we may/may not send a data => you may send data like 2, true or send a object which is preffered
+the data you sent will be come as 1st arg in the registered event => client side in this case
