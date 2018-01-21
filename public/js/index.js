@@ -11,3 +11,9 @@ socket.on('disconnect',function(){
 socket.on('newMessage',function(message){
   console.log('Listened about the new received message',message);
 });
+
+socket.emit('createMessage',{
+  from:'frank'
+},function(data){
+  console.log(data);
+});

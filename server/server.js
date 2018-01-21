@@ -23,9 +23,10 @@ io.on('connection',(socket)=>{
   socket.broadcast.emit('newMessage',generateMessage('Admin','New User joined'));
 
 
-  socket.on('createMessage',(message)=>{
+  socket.on('createMessage',(message,callback)=>{
     console.log('New email from client to server', message);
     io.emit('newMessage',generateMessage(message.from,message.text));
+    callback('This is acknowledgement');
     // socket.broadcast.emit('newMessage',{
     // from: 'admin',
     // text: 'Message from user',

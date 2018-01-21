@@ -63,4 +63,8 @@ Now io object inside server.js is collection of all clients while the socket obj
  Also, lets add simple emit from admin to tab1 itself that welcome to chat chatroom when he connects
  now instead of creating message object everytime, we will call funct  => create message.js
  Now we will replace this function everywhere and write unittest for this function
- 
+
+ Now we will see ack => when the message is sent we should get the acknowledgement back so that if any problem, we could send the message again
+ => we have to make changes in both the listener and sender
+ => For example => in receiver/listener, we will get callback as 2nd arg => call this callback function with your acknowledgement
+ =>in sender/emitter, we add a callback function, we will give 3rd parameter to our emit function which will be the function => this function is the function which we just called above => whatever data you sent while calling this function, you will get it as arg => In other words, in listener side, you called a function of emitter side with some acknowledgement
