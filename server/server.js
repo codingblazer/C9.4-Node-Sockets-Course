@@ -15,14 +15,15 @@ app.use(express.static(publicPath));
 io.on('connection',(socket)=>{
   console.log('The connection event has occured');
 
-  // socket.emit('newEmail'); will work without 2nd arg
-  socket.emit('newMessage',{
-    from: 'sachin',
-    text: 'this is the text'
-  });
-
   socket.on('createMessage',(message)=>{
     console.log('New email from client to server', message);
+    io.emit('newMessage',{
+    from: message.from,
+    text: message.text,
+    createdAt: new Date().getTime() //done to prevent spoofing
+    });
+
+
   });
 
   socket.on('disconnect',()=>{

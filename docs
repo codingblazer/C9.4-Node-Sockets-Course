@@ -48,4 +48,12 @@ the data you sent will be come as 1st arg in the registered event => client side
 
 Remember that on serve side, everythign happends inside onConnect while on frontend side, the emition happens inside onConnect and registrations happends outside onConnect
 Note that in browser console, we can access the variables of our frontend js file directly => like socket
-=> this makes debugging lot easier 
+=> this makes debugging lot easier
+
+When one user sends message to server, it actually gets broadcasted to everyone => if i create message from one tab in chrome, => i should see the message in other tab and this tab itself => locally we are using tabs but same would work on heroku on different browser/ diff networks => as soon as you have tab opened hitting the url of server, they are distinct user for server
+=> since for server, anyone hitting his url is client => if server send message back to client => since all are clients, message goes to everyone => Similarly on heroku, you can see by opening url of heroku server for this in diff tabs => you can also open tabs on diff phones and hit heroku url
+Now io object inside server.js is collection of all clients while the socket object represent one single user i.e. whenever connection between one tab and server happens, the socket for that tab is created => for each tab, we have diff prog instance of socket ob in their own lifecycle
+=> if we call emit on io, it is sent to all client and if we call it on the socket object it will be sent to the tab/user associated with that socket
+=> inside server.js, listener/register of message, lets say we want to further broadcast this message which is incoming to server to all the clients/tabs => we used io object for doing it
+=> remove all other emit calls for now from both client and server (we can use browser to send emit from client side)
+ 
