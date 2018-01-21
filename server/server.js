@@ -12,19 +12,39 @@ var io = socketIO(server);
 
 app.use(express.static(publicPath));
 
+
+
+
 io.on('connection',(socket)=>{
   console.log('The connection event has occured');
 
+
+  socket.emit('newMessage',{
+    from: 'Admin',
+    text: 'You are connected. Welcome to the chat room.'
+  });
+
+  socket.broadcast.emit('newMessage',{
+  from: 'admin',
+  text: 'New user has joined the chatroom',
+  createdAt: new Date().getTime() //done to prevent spoofing
+  });
+
+
   socket.on('createMessage',(message)=>{
     console.log('New email from client to server', message);
-    io.emit('newMessage',{
-    from: message.from,
-    text: message.text,
+    // io.emit('newMessage',{
+    // from: message.from,
+    // text: message.text,
+    // createdAt: new Date().getTime() //done to prevent spoofing
+    // });
+    socket.broadcast.emit('newMessage',{
+    from: 'admin',
+    text: 'Message from user',
     createdAt: new Date().getTime() //done to prevent spoofing
     });
-
-
   });
+
 
   socket.on('disconnect',()=>{
     console.log('disconnect event');

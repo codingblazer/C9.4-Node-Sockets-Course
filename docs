@@ -56,4 +56,8 @@ Now io object inside server.js is collection of all clients while the socket obj
 => if we call emit on io, it is sent to all client and if we call it on the socket object it will be sent to the tab/user associated with that socket
 => inside server.js, listener/register of message, lets say we want to further broadcast this message which is incoming to server to all the clients/tabs => we used io object for doing it
 => remove all other emit calls for now from both client and server (we can use browser to send emit from client side)
- 
+
+ Now this was not broadcasting actually bcoz in that the sender does not get message, all other gets it => but here, the sender was also getting the message itself => to avoid this,we make changes :
+ => we use the socket.broadcast.emit for this => lets see the process => tab1,2,3 opened => only tab1 sent message => only inside its listener is involed inside which we are broadcasting to all except itself => using tab1's socket, we sent message to all
+
+ Also, lets add simple emit from admin to tab1 itself that welcome to chat chatroom when he connects
