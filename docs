@@ -76,3 +76,11 @@ Now io object inside server.js is collection of all clients while the socket obj
  => now lets create a code to see the incoming messages
  => we will present messags in form of list and hence added list element in html
  => now inside lsitener of new incming message we have added jquery to add that incoming message to list
+
+ Lets add send location button to this chat app => add button in html and jquery for it in index.js
+ navigator.geolocation is accessible directly as it is present in almost all browser => if not => alert user of dat
+ Now call getCurrentPosition function => 2 func as argument, first for success which will give us position obejct abd 2nd for error
+
+ Now some browswe may not allow to access location if you are not on secured https but no worry as heroku url is always https
+ Once you got this position, send lat and long via emit to server and listener in server side which will boradcast this location to all the users
+ 

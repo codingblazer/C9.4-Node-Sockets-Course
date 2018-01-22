@@ -27,13 +27,11 @@ io.on('connection',(socket)=>{
     console.log('New email from client to server', message);
     io.emit('newMessage',generateMessage(message.from,message.text));
     callback('This is acknowledgement');
-    // socket.broadcast.emit('newMessage',{
-    // from: 'admin',
-    // text: 'Message from user',
-    // createdAt: new Date().getTime() //done to prevent spoofing
-    // });
   });
 
+  socket.on('createLocationMessage',(coords)=>{
+    io.emit('newMessage',generateMessage('Admin',`${coords.latitude},${coords.longitude}`));
+  });
 
   socket.on('disconnect',()=>{
     console.log('disconnect event');
