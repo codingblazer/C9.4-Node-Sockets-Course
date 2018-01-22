@@ -88,3 +88,13 @@ Now io object inside server.js is collection of all clients while the socket obj
 
  Now we have added a css code already made by andrew and pasted in css file. And used classes from that css in our html
  Now we will add the reseting of sender pannel when msg is already sent. Also send location button is disabled until location is sent
+ Lets study the timestamps => they are integers in ms => they are wrt to the Jan 1st 1970 in UTC => they are not locaiton dependent => 1000 means that 1 sec after 1jan 1970 00:00:00 am => we can also have negative values which would mean going into the past
+
+ If we use inbuilt date function it don't provide us flexibility in formatting for ex we can't write months like jan feb => we first have to convert the integer to their resp month string
+ => we will use moment lib for that
+ //supports various formatting
+ //=> see npm docs for moment ot see al the formats
+ //this lib also contains manipulations => we can add days/months/etc to current date etc
+ Now in message.js let's replace newDate by its moment equivalent just because we dont want different things used for time in project
+ Now to use moment in frontend, inside node_moduless-> moments-> copy moments.js to our lib folder and then in html include this using script tag
+ 
