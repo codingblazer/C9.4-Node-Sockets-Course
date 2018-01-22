@@ -83,4 +83,5 @@ Now io object inside server.js is collection of all clients while the socket obj
 
  Now some browswe may not allow to access location if you are not on secured https but no worry as heroku url is always https
  Once you got this position, send lat and long via emit to server and listener in server side which will boradcast this location to all the users
- 
+
+ Now we will show this message via link to all the users => first like done, the location is sent to server => now server will broadcast it to all other users => Now in frontedn of every user, we should use these coord to show link to map => first add listener to this broadcasted message in frontend (since we are not sending simple message, we created new event : newLocationMessage as this event needs t be handled diff than normal message)
