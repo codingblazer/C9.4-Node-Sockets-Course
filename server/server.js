@@ -26,7 +26,7 @@ io.on('connection',(socket)=>{
   socket.on('createMessage',(message,callback)=>{
     console.log('New email from client to server', message);
     io.emit('newMessage',generateMessage(message.from,message.text));
-    callback('This is acknowledgement');
+    callback();
   });
 
   socket.on('createLocationMessage',(coords)=>{
