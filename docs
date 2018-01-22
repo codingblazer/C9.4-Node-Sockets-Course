@@ -68,3 +68,11 @@ Now io object inside server.js is collection of all clients while the socket obj
  => we have to make changes in both the listener and sender
  => For example => in receiver/listener, we will get callback as 2nd arg => call this callback function with your acknowledgement
  =>in sender/emitter, we add a callback function, we will give 3rd parameter to our emit function which will be the function => this function is the function which we just called above => whatever data you sent while calling this function, you will get it as arg => In other words, in listener side, you called a function of emitter side with some acknowledgement
+
+ Now lets create some front end form for our chat app => when we submit form, it first refereshes and then in url add our inputs and then resets the field => at this point fields will be reset and in url we will have previous data
+ =>But we want to override the submit button by listening and then fetching the result
+ => in index.js, we first fetched the form and then prevented the defualt behvior of refreshing on submiting
+ then we are taking the message from textfield and sednign it to server
+ => now lets create a code to see the incoming messages
+ => we will present messags in form of list and hence added list element in html
+ => now inside lsitener of new incming message we have added jquery to add that incoming message to list
