@@ -97,4 +97,7 @@ Now io object inside server.js is collection of all clients while the socket obj
  //this lib also contains manipulations => we can add days/months/etc to current date etc
  Now in message.js let's replace newDate by its moment equivalent just because we dont want different things used for time in project
  Now to use moment in frontend, inside node_moduless-> moments-> copy moments.js to our lib folder and then in html include this using script tag
- 
+ Now we are going to use moustache library => this lib will help us in templating things like we did jQuery(<li></li>) => no need to generalte these html like This
+ Add moustache script tag inside html
+ Now to load any html template and edit it dynamically, we first create a normal html inside a script tag with any given idliek done for message id => we use {{}} to load any dynamic data
+ Once this is done, we load this template + provoding data for {{}} => insdie index.js, we first loaded template using its id and then rendered it by provdign data => then appended it to messages list   
