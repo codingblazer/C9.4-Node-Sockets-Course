@@ -96,10 +96,26 @@ Now io object inside server.js is collection of all clients while the socket obj
  //=> see npm docs for moment ot see al the formats
  //this lib also contains manipulations => we can add days/months/etc to current date etc
  Now in message.js let's replace newDate by its moment equivalent just because we dont want different things used for time in project
- Now to use moment in frontend, inside node_moduless-> moments-> copy moments.js to our lib folder and then in html include this using script tag
+ Now to use moment in frontend, inside node_moduless-> moments-> copy mo   ments.js to our lib folder and then in html include this using script tag
  Now we are going to use moustache library => this lib will help us in templating things like we did jQuery(<li></li>) => no need to generalte these html like This
  Add moustache script tag inside html
  Now to load any html template and edit it dynamically, we first create a normal html inside a script tag with any given idliek done for message id => we use {{}} to load any dynamic data
  Once this is done, we load this template + provoding data for {{}} => insdie index.js, we first loaded template using its id and then rendered it by provdign data => then appended it to messages list
  Now if mesages cross the screen => we have to scroll ourself but instead it should show us directly to the latest message using autoscrolling
  =>scrollHeight(total messages) = scrollTop(messages above current visible)+client height(messages currently showed)+ messageHight(new incoming message)
+
+ Renamed the index page to chat.html and crated a index.html page for join room
+ Now lets create code for joining particular Room
+ => When you enter form data in join page => that comes in url as q params => to take them out as object, we willl use deparam libcreated by andrew => add it using script tag
+ => now these params/ url part is available in location object which is global object of the browser => we can access it as : window.location.search
+ => in server.js add a listener to your join => frontend will emit a message with these params => Now validate the data using validation.js and if any error => call callback/ack function with error, else
+ => in chat.js, since connect will be called as soon as page loads => inside it, take the params and emit them to the server for the listener we just creeated
+ => if err is sent back through ack => first send alert to user and chnage the url to home page i.e. go back to home page to ask again
+ else i.e inside connection only, we should let this user/socket join the requested room => socket.join (=current user.join) and you can give the key => user will join all other users associated with the key
+ Now, till now we have seen 3 emition methods => .emit to pass msg to single user i.e. itself i.e. from server to user himself on frontedn like from admin
+ .broadcast.emit => to send msg from this user/socket to everyone except this user/socekt itself
+ .io.emit => to send msg from this user to all including the user itself
+
+ Now, lets see how to do in room => io.to(room keyname).emit => same as io.emit but now its sending just limited to room with key given
+ broadcast.to(key).emit() => same as before but limited to key room
+ => after this call the callback with empty so that frontedn can know that request has been processed
