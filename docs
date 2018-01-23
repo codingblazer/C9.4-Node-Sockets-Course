@@ -119,3 +119,14 @@ Now io object inside server.js is collection of all clients while the socket obj
  Now, lets see how to do in room => io.to(room keyname).emit => same as io.emit but now its sending just limited to room with key given
  broadcast.to(key).emit() => same as before but limited to key room
  => after this call the callback with empty so that frontedn can know that request has been processed
+
+ Now we must create users => right now all users show name as users
+ => each socket has a socket.id which can be used everywhere for that socket => lets create a class of users to store all the users with following functions :
+ user bject will have : id of its socket, name and room
+ and function : addUser(id,name,room)
+ removeUser(id)
+ getUser(id)
+ getUserList(room)
+
+ We will create claas using ES6
+ classes are just like java => created a users class, no need to create user class => made functions and there tests
