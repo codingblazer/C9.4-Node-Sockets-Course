@@ -100,4 +100,6 @@ Now io object inside server.js is collection of all clients while the socket obj
  Now we are going to use moustache library => this lib will help us in templating things like we did jQuery(<li></li>) => no need to generalte these html like This
  Add moustache script tag inside html
  Now to load any html template and edit it dynamically, we first create a normal html inside a script tag with any given idliek done for message id => we use {{}} to load any dynamic data
- Once this is done, we load this template + provoding data for {{}} => insdie index.js, we first loaded template using its id and then rendered it by provdign data => then appended it to messages list   
+ Once this is done, we load this template + provoding data for {{}} => insdie index.js, we first loaded template using its id and then rendered it by provdign data => then appended it to messages list
+ Now if mesages cross the screen => we have to scroll ourself but instead it should show us directly to the latest message using autoscrolling
+ =>scrollHeight(total messages) = scrollTop(messages above current visible)+client height(messages currently showed)+ messageHight(new incoming message)
